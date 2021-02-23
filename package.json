@@ -1,0 +1,64 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "@babel/preset-react": "^7.10.4",
+        "axios": "^0.19",
+        "cross-env": "^7.0",
+        "laravel-mix": "^5.0.1",
+        "lodash": "^4.17.19",
+        "resolve-url-loader": "^3.1.0",
+        "sass": "^1.26.11",
+        "sass-loader": "^8.0.2",
+        "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.10.4",
+        "@fortawesome/fontawesome-free": "^5.12.1",
+        "@fortawesome/fontawesome-svg-core": "^1.2.27",
+        "@fortawesome/free-brands-svg-icons": "^5.15.1",
+        "@fortawesome/free-regular-svg-icons": "^5.15.1",
+        "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "@fortawesome/react-fontawesome": "^0.1.8",
+        "@tailwindcss/aspect-ratio": "^0.2.0",
+        "@tailwindcss/forms": "^0.2.1",
+        "@tailwindcss/typography": "^0.3.1",
+        "autoprefixer": "^10.0.2",
+        "axios-auth-refresh": "^3.0.0",
+        "ckeditor4-react": "^1.4.0",
+        "copy-webpack-plugin": "^6.1.1",
+        "imagemin-mozjpeg": "^9.0.0",
+        "imagemin-webpack-plugin": "^2.4.2",
+        "laravel-echo": "1.8.1",
+        "laravel-echo-server": "^1.6.2",
+        "luxon": "^1.25.0",
+        "postcss": "^8.1.8",
+        "react": "^16.13.1",
+        "react-datepicker": "^3.5.0",
+        "react-dom": "^16.13.1",
+        "react-paginate": "^6.5.0",
+        "react-router-dom": "^5.2.0",
+        "react-select": "^3.1.1",
+        "react-timeago": "^5.2.0",
+        "react-toastify": "^6.2.0",
+        "socket.io-client": "2.3.0",
+        "tailwind": "^4.0.0",
+        "tailwindcss": "^2.0.1"
+    },
+    "babel": {
+        "presets": [
+            "@babel/preset-env"
+        ],
+        "plugins": [
+            "@babel/plugin-proposal-class-properties"
+        ]
+    }
+}
