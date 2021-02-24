@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Admin\MainStage;
+namespace App\Http\Resources\MainStage;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

@@ -82,7 +82,7 @@ export default class MainStage extends React.Component {
                         {currentSession && (
                             <div className="grid grid-cols-3 gap-8">
                                 <div className={`${currentSession?.chat ? 'col-span-2' : 'col-span-3'}`}>
-                                    {currentSession?.reactions && (
+                                    {currentSession?.reactions === true && (
                                         <Reactions
                                             side="right"
                                             ref={ref => this.reactions = ref}
@@ -93,7 +93,7 @@ export default class MainStage extends React.Component {
                                         </Reactions>
                                     )}
 
-                                    {!currentSession?.reactions && (
+                                    {currentSession?.reactions === false && (
                                         <Stream src={currentSession.stream_src} />
                                     )}
                                 </div>

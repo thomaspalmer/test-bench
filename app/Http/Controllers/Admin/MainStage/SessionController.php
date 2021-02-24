@@ -20,6 +20,7 @@ class SessionController extends Controller
     {
         return SessionResource::collection(
             MainStageSession::filter($filter)
+                ->orderBy('starts_at', 'desc')
                 ->paginate()
         );
     }

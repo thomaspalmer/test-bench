@@ -28,8 +28,7 @@ export default class StartSession extends React.Component {
             session: session.id
         }, {
             ...session,
-            starts_at: DateTime.now(),
-            ends_at: null
+            starts_at: DateTime.now()
         }, 'update');
 
         if (request.success) {
@@ -37,7 +36,7 @@ export default class StartSession extends React.Component {
             return this.props.onClose();
         }
 
-        Toast.error();
+        Toast.error('Unable to start session, make sure there is not another session currently live');
         this.setState({working: false});
     };
 

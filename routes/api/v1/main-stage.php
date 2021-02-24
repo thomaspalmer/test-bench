@@ -26,7 +26,11 @@ Route::middleware('auth:sanctum')
     ->prefix('main-stage')
     ->name('main-stage.')
     ->group(function () {
-        Route::resource('sessions', SessionController::class);
+        Route::resource('sessions', SessionController::class)
+            ->only(['index']);
 
-        Route::resource('sessions.reactions', ReactionController::class);
+        Route::resource('sessions.reactions', ReactionController::class)
+            ->only(['store']);
+        Route::resource('sessions.chats', ChatController::class)
+            ->only(['index', 'store']);
     });

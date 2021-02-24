@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\MainStageChat as ChatEvent;
 use DualityStudio\Base\Traits\Filterable;
 use DualityStudio\Base\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +18,14 @@ class MainStageChat extends Model
     protected $fillable = [
         'user_id', 'session_id', 'message'
     ];
+
+    /**
+     * @var string[]
+     */
+    protected $dispatchesEvents = [
+        'created' => ChatEvent::class
+    ];
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

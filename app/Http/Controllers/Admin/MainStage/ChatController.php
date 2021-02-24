@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\MainStage;
 
 use App\Filters\Admin\MainStage\ChatFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Admin\MainStage\ChatResource;
+use App\Http\Resources\MainStage\ChatResource;
 use App\Models\MainStageSession;
 use Illuminate\Http\Request;
 

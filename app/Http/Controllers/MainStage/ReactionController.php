@@ -4,10 +4,8 @@ namespace App\Http\Controllers\MainStage;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MainStage\CreateReactionRequest;
-use App\Http\Resources\Reaction\ReactionResource;
+use App\Http\Resources\MainStage\ReactionResource;
 use App\Models\MainStageSession;
-use App\Models\Reaction;
-use Illuminate\Http\Request;
 
 class ReactionController extends Controller
 {
@@ -18,8 +16,10 @@ class ReactionController extends Controller
      */
     public function store(MainStageSession $session, CreateReactionRequest $request)
     {
-        return new ReactionResource($session->reactions()->create(
-            $request->only(['reaction', 'resource_id', 'resource_type'])
-        ));
+        return new ReactionResource(
+            $session->reactions()->create(
+                $request->only(['reaction', 'resource_id', 'resource_type'])
+            )
+        );
     }
 }

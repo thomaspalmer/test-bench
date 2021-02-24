@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\MainStage;
 
+use App\Rules\NoSessionOverlap;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSessionRequest extends FormRequest
@@ -25,7 +26,11 @@ class UpdateSessionRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'starts_at' => 'required|date',
+            'starts_at' => [
+                'required',
+                'date',
+                new NoSessionOverlap()
+            ],
             'ends_at' => 'nullable|date|after:starts_at',
             'description' => 'nullable|string',
             'stream_src' => 'required|string|max:255',

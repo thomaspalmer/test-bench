@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Events\Reaction as ReactionEvent;
+use App\Events\MainStageReaction as ReactionEvent;
 use DualityStudio\Base\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
