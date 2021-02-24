@@ -26,6 +26,7 @@ class Store extends React.Component {
      * @type {{pollId: *, sessionId: *, loading: boolean}}
      */
     state = {
+        now: false,
         loading: false,
         sessionId: this.props.match.params.session,
         pollId: this.props.match.params?.poll
@@ -46,6 +47,10 @@ class Store extends React.Component {
         }
     };
 
+    /**
+     * @method fetchPoll
+     * @return {Promise<void>}
+     */
     fetchPoll = async () => {
         this.setState({loading: true});
 
@@ -70,6 +75,19 @@ class Store extends React.Component {
         Toast.error();
     };
 
+    /**
+     * @method handleToggleStartsNow
+     */
+    handleToggleStartsNow = () => {
+        this.setState({
+            now: !this.state.now
+        });
+    };
+
+    /**
+     * @method handleDeleteAnswer
+     * @param {object} k
+     */
     handleDeleteAnswer = (k) => {
         const {form, handleInput} = this.props;
 
@@ -78,6 +96,11 @@ class Store extends React.Component {
         handleInput('answers', form.answers);
     };
 
+    /**
+     * @method handleAnswerInput
+     * @param {string} value
+     * @param {number} k
+     */
     handleAnswerInput = (value, k) => {
         const {form, handleInput} = this.props;
 
@@ -86,6 +109,9 @@ class Store extends React.Component {
         handleInput('answers', form.answers);
     };
 
+    /**
+     * @method handleAddAnswer
+     */
     handleAddAnswer = () => {
         const {form, handleInput} = this.props;
 
@@ -112,9 +138,13 @@ class Store extends React.Component {
         }
     };
 
+    /**
+     * @method render
+     * @return {JSX.Element}
+     */
     render () {
         const {working, alert, form, handleInput, handleSubmit} = this.props;
-        const {loading, sessionId, pollId} = this.state;
+        const {loading, sessionId, now, pollId} = this.state;
 
         return (
             <AdminLayout>
@@ -145,15 +175,27 @@ class Store extends React.Component {
 
                             <div className="mb-4">
                                 <Label label="Display From"/>
-                                <DatePicker
-                                    className="w-full border border-gray-300 rounded-md shadow-sm"
-                                    selected={form.ends_at}
-                                    onChange={date => handleInput('ends_at', date)}
-                                    showTimeSelect
-                                    dateFormat="Pp"
-                                    minutes={5}
-                                    timeIntervals={5}
-                                />
+                                <div className="mt-1 flex rounded-md shadow-sm">
+                                    <div className="relative flex items-stretch flex-grow focus-within:z-10">
+                                        <DatePicker
+                                            disabled={now}
+                                            className={`w-full border border-gray-300 rounded-l-md shadow-sm ${now ? 'opacity-50' : ''}`}
+                                            selected={form.display_from}
+                                            onChange={date => handleInput('display_from', date)}
+                                            showTimeSelect
+                                            dateFormat="Pp"
+                                            timeIntervals={5}
+                                        />
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={this.handleToggleStartsNow}
+                                        className={
+                                            `-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md bg-gray-50 hover:bg-gray-100 transition duration-200 focus:ring-0 ${now ? 'bg-indigo-500 text-white border-indigo-500' : 'text-gray-700'}`
+                                        }>
+                                        Now
+                                    </button>
+                                </div>
                             </div>
 
                             <div>

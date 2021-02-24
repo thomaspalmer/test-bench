@@ -152,7 +152,7 @@ class Store extends React.Component {
                                             type="button"
                                             onClick={this.handleToggleStartsNow}
                                             className={
-                                                `-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 transition duration-200 focus:ring-0 ${now ? 'bg-indigo-500 text-white border-indigo-500' : ''}`
+                                                `-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md bg-gray-50 hover:bg-gray-100 transition duration-200 focus:ring-0 ${now ? 'bg-indigo-500 text-white border-indigo-500' : 'text-gray-700'}`
                                             }>
                                             Now
                                         </button>

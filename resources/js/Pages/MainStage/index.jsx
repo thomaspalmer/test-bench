@@ -1,4 +1,5 @@
 import React from 'react';
+import {DateTime} from 'luxon';
 
 import Authenticated from 'Components/Layouts/Authenticated';
 import {Loading} from 'Components/Partials';
@@ -28,6 +29,38 @@ export default class MainStage extends React.Component {
             .private(`sessions`)
             .listen('SessionsUpdated', (e) => this.fetchSessions(false));
 
+        this.interval = setInterval(this.updateSessions, 2000); // 2 seconds
+    };
+
+    /**
+     * @method componentWillUnmount
+     */
+    componentWillUnmount = () => {
+        window.clearInterval(this.interval);
+    };
+
+    /**
+     * @method updateSessions
+     */
+    updateSessions = () => {
+        const now = DateTime.now();
+
+        const currentSession = this.state.sessions.find(session => {
+            const startsAt = DateTime.fromISO(session.starts_at);
+            const endsAt = DateTime.fromISO(session.ends_at);
+
+            return now > startsAt && (endsAt === null || now < endsAt);
+        });
+
+        if (currentSession && currentSession.id !== this.state.currentSession?.id) {
+            this.setState({
+                currentSession
+            });
+        } else if (!currentSession && this.state.currentSession) {
+            this.setState({
+                currentSession: null
+            })
+        }
     };
 
     /**

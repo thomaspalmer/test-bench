@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\MainStage;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Reaction\ReactionResource;
+use App\Http\Resources\MainStage\ReactionResource;
 use App\Models\MainStageSession;
 use Illuminate\Http\Request;
 
