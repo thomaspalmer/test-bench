@@ -180,6 +180,10 @@ export default class MainStage extends React.Component {
                                                                 </Link>
                                                             )}
 
+                                                            <Link to={`/admin/main-stage/polls/${session.id}`}>
+                                                                <SecondaryButton text="Polls" className="mr-2" />
+                                                            </Link>
+
                                                             <ModalTrigger
                                                                 component={Delete}
                                                                 props={{

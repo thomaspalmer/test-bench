@@ -80,7 +80,7 @@ export default class MainStage extends React.Component {
                         )}
 
                         {currentSession && (
-                            <div className="grid grid-cols-3 gap-8">
+                            <div className="grid md:grid-cols-3 gap-8">
                                 <div className={`${currentSession?.chat ? 'col-span-2' : 'col-span-3'}`}>
                                     {currentSession?.reactions === true && (
                                         <Reactions

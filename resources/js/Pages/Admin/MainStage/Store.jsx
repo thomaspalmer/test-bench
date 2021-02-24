@@ -208,6 +208,12 @@ class Store extends React.Component {
                                     onChange={(v) => handleInput('reactions', v)}
                                     label="Reactions"
                                 />
+
+                                <Toggle
+                                    value={form.remote_control}
+                                    onChange={(v) => handleInput('remote_control', v)}
+                                    label="Remote Control"
+                                />
                             </div>
                         </div>
 
