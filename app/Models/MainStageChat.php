@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\MainStageChat as ChatEvent;
+use App\Events\MainStageChatDeleted as ChatDeletedEvent;
 use DualityStudio\Base\Traits\Filterable;
 use DualityStudio\Base\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,7 +24,8 @@ class MainStageChat extends Model
      * @var string[]
      */
     protected $dispatchesEvents = [
-        'created' => ChatEvent::class
+        'created' => ChatEvent::class,
+        'deleted' => ChatDeletedEvent::class
     ];
 
     /**

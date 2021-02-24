@@ -7,18 +7,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MainStage\ChatResource;
 use App\Models\MainStageChat;
 use App\Models\MainStageSession;
-use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
     /**
      * @param MainStageSession $session
      * @param ChatFilter $filter
-     * @return ChatResource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(MainStageSession $session, ChatFilter $filter)
     {
-        return new ChatResource(
+        return ChatResource::collection(
             $session->chats()
                 ->orderBy('created_at', 'desc')
                 ->with('user')

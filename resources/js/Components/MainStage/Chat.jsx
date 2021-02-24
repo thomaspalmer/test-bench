@@ -44,6 +44,11 @@ class Chat extends React.Component {
                     this.handleAddMessage(e.message);
                 }
             })
+            .listen('MainStageChatDeleted', (e) => {
+                if (e.message.user_id !== User.id) {
+                    this.handleDeleteMessage(e.message);
+                }
+            })
             .listen('subscription_error', console.error);
     };
 
@@ -118,6 +123,16 @@ class Chat extends React.Component {
                 ...[message],
                 ...this.state.messages
             ]
+        });
+    };
+
+    /**
+     * @method handleAddMessage
+     * @param {object} message
+     */
+    handleDeleteMessage = (message) => {
+        this.setState({
+            messages: this.state.messages.filter(m => m.id !== message.id)
         });
     };
 
