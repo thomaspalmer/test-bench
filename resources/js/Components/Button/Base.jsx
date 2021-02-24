@@ -5,6 +5,7 @@ import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 /**
  * @function Base
  * @param {function} onClick
+ * @param {string} type
  * @param {string} className
  * @param {string} text
  * @param {boolean} working
@@ -12,11 +13,11 @@ import {faSpinner} from '@fortawesome/free-solid-svg-icons';
  * @return {JSX.Element}
  * @constructor
  */
-const Base = ({onClick, className, text, working, disabled}) => {
+const Base = ({onClick, type, className, text, working, disabled}) => {
     return (
         <button
             className={className}
-            type={onClick !== undefined ? 'button' : 'submit'}
+            type={type ?? (onClick !== undefined ? 'button' : 'submit')}
             onClick={onClick}
             disabled={disabled}
         >

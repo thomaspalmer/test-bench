@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import CKEditor from 'ckeditor4-react';
-import DateTime from 'luxon/src/datetime';
+import {DateTime} from 'luxon';
 
 import AdminLayout from 'Pages/Admin/AdminLayout';
 import {Input, Toggle, Label, FormHandler} from 'Components/Form';

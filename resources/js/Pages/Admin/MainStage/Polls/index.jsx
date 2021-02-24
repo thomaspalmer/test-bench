@@ -120,17 +120,17 @@ export default class Polls extends React.Component {
 
                                     {polls.meta.total > 0 && (
                                         <React.Fragment>
-                                            {polls.data.map(session => (
-                                                <tr key={session.id}>
+                                            {polls.data.map(poll => (
+                                                <tr key={poll.id}>
                                                     <td className="border px-4 py-2">
                                                         {poll.question}
                                                     </td>
                                                     <td className="border px-4 py-2 flex">
-                                                        <Link to={`/admin/main-stage/store/${session.id}`}>
+                                                        <Link to={`/admin/main-stage/polls/${poll.session_id}/store/${poll.id}`}>
                                                             <PrimaryButton text="Edit" className="mr-2" />
                                                         </Link>
 
-                                                        <Link to={`/admin/main-stage/polls/${session.id}`}>
+                                                        <Link to={`/admin/main-stage/polls/${poll.id}`}>
                                                             <SecondaryButton text="Results" className="mr-2" />
                                                         </Link>
 
@@ -138,8 +138,7 @@ export default class Polls extends React.Component {
                                                             component={Delete}
                                                             props={{
                                                                 itemName: 'session',
-                                                                session,
-                                                                onDelete: () => this.handleDelete(session.id)
+                                                                onDelete: () => this.handleDelete(poll)
                                                             }}
                                                         >
                                                             <DangerButton text="Delete" />

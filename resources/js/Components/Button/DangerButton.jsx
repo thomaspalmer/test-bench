@@ -5,6 +5,7 @@ import Base from './Base';
 /**
  * @function DangerButton
  * @param {function} onClick
+ * @param {string} type
  * @param {string} className
  * @param {string} text
  * @param {boolean} working
@@ -12,7 +13,7 @@ import Base from './Base';
  * @return {JSX.Element}
  * @constructor
  */
-const DangerButton = ({onClick, className, text, working, disabled}) => {
+const DangerButton = ({onClick, type, className, text, working, disabled}) => {
     const classes = `
         inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md
         text-white bg-red-600 transition duration-150 ease-in-out flex items-center
@@ -26,7 +27,7 @@ const DangerButton = ({onClick, className, text, working, disabled}) => {
     return (
         <Base
             className={classes}
-            type={onClick !== undefined ? 'button' : 'submit'}
+            type={type}
             onClick={onClick}
             disabled={disabled}
             working={working}

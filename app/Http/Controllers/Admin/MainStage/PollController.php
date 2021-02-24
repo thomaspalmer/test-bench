@@ -31,7 +31,7 @@ class PollController extends Controller
      */
     public function store(MainStageSession $session, CreatePollRequest $request)
     {
-        $poll = MainStagePoll::create($request->validated());
+        $poll = $session->polls()->create($request->validated());
 
         foreach ($request->get('answers') as $answer) {
             $poll->answers()->create([
@@ -49,7 +49,7 @@ class PollController extends Controller
      */
     public function show(MainStageSession $session, MainStagePoll $poll)
     {
-        return new PollResource($poll);
+        return new PollResource($poll->load('answers'));
     }
 
     /**
@@ -64,12 +64,14 @@ class PollController extends Controller
 
         $ids = [];
         foreach ($request->get('answers') as $answer) {
-            $a = $poll->answers()->updateOrCreate([], [
+            $a = $poll->answers()->updateOrCreate([
                 'answer' => $answer
-            ]);
+            ], []);
 
             $ids[] = $a->id;
         }
+
+        dd($ids);
 
         $poll->answers()->whereNotIn('id', $ids)->delete();
 
