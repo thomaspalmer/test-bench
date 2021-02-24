@@ -2,6 +2,8 @@ import {EventEmitter} from 'events';
 
 import Me from './Api/Me/Me';
 
+import {getAvatarUrl} from './Helpers';
+
 class User extends EventEmitter {
     /**
      * @var user
@@ -13,7 +15,7 @@ class User extends EventEmitter {
      * @method loggedIn
      * @return {boolean}
      */
-    get loggedIn () {
+    get loggedIn() {
         return this.data !== null;
     };
 
@@ -21,7 +23,7 @@ class User extends EventEmitter {
      * @method id
      * @return {string}
      */
-    get id () {
+    get id() {
         return this.data !== null ? this.data.id : null;
     }
 
@@ -51,11 +53,7 @@ class User extends EventEmitter {
      * @return {string|*}
      */
     getAvatarUrl = () => {
-        if (!this.data.avatar_path) {
-            return `https://ui-avatars.com/api/?name=${this.data.first_name}&color=7F9CF5&background=EBF4FF`;
-        }
-
-        return this.data.avatar_path_url;
+        return getAvatarUrl(this.data);
     }
 
     /**

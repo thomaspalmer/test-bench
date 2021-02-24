@@ -16,17 +16,17 @@ class MainStageChat implements ShouldBroadcast
     /**
      * @var MainStageChatModel
      */
-    public MainStageChatModel $comment;
+    public MainStageChatModel $message;
 
     /**
      * Create a new event instance.
      *
-     * @param MainStageChatModel $comment
+     * @param MainStageChatModel $message
      */
-    public function __construct(MainStageChatModel $comment)
+    public function __construct(MainStageChatModel $message)
     {
-        $this->comment = $comment;
-        $this->comment->load('user');
+        $this->message = $message;
+        $this->message->load('user');
     }
 
     /**
@@ -36,6 +36,6 @@ class MainStageChat implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('comments.' . $this->comment->session_id);
+        return new PrivateChannel('chat.' . $this->message->session_id);
     }
 }

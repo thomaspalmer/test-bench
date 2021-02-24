@@ -26,7 +26,6 @@ class MainStageChat extends Model
         'created' => ChatEvent::class
     ];
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

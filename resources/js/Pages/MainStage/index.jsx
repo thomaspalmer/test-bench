@@ -5,7 +5,7 @@ import {Loading} from 'Components/Partials';
 import {Stream, Chat, Reactions} from 'Components/MainStage';
 
 import Sessions from 'Services/Api/MainStage/Sessions';
-import {Toast, User, Socket} from 'Services';
+import {Toast, Socket} from 'Services';
 
 export default class MainStage extends React.Component {
     /**
@@ -86,7 +86,6 @@ export default class MainStage extends React.Component {
                                         <Reactions
                                             side="right"
                                             ref={ref => this.reactions = ref}
-                                            userId={User.id}
                                             sessionId={currentSession.id}
                                         >
                                             <Stream src={currentSession.stream_src} />
@@ -100,7 +99,9 @@ export default class MainStage extends React.Component {
 
                                 {currentSession?.chat && (
                                     <div>
-                                        Chat Box Here
+                                        <Chat
+                                            sessionId={currentSession.id}
+                                        />
                                     </div>
                                 )}
                             </div>

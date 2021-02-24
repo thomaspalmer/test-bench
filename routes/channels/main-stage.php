@@ -14,7 +14,7 @@ Broadcast::channel('reactions.{sessionId}', function ($user, $sessionId) {
     ])->first();
 });
 
-Broadcast::channel('comments.{sessionId}', function ($user, $sessionId) {
+Broadcast::channel('chat.{sessionId}', function ($user, $sessionId) {
     return \App\Models\MainStageSession::where([
         ['chat', true],
         ['id', $sessionId]

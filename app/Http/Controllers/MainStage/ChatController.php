@@ -18,6 +18,7 @@ class ChatController extends Controller
     {
         return ChatResource::collection(
             $session->chats()
+                ->orderBy('created_at', 'desc')
                 ->with('user')
                 ->paginate()
         );

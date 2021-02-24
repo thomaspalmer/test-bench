@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ReactionApi from 'Services/Api/MainStage/Reaction';
-import {Socket, Event} from 'Services';
+import {Socket, User, Event} from 'Services';
 
 export default class Reactions extends React.Component {
     /**
@@ -65,7 +65,7 @@ export default class Reactions extends React.Component {
         Socket.getConnection()
             .private(`reactions.${this.props.sessionId}`)
             .listen('MainStageReaction', (e) => {
-                if (e.reaction.user_id !== this.props.userId) {
+                if (e.reaction.user_id !== User.id) {
                     this.handleAddReaction(e.reaction);
                 }
             });
