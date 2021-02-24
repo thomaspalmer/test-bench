@@ -110,7 +110,7 @@ export default class Chat extends React.Component {
     /**
      * @method
      * @param {object} message
-     * @return {Promise<void>}
+     * @returns {Promise<void>}
      */
     handleDelete = async (message) => {
         const request = await ChatApi.delete({
