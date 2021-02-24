@@ -11,7 +11,8 @@ export default class Chat extends React.Component {
     state = {
         chat: [],
         chatMeta: null,
-        working: false
+        working: false,
+        sessionId: this.props.match.params.session
     };
 
     componentDidMount = () => {
@@ -21,7 +22,9 @@ export default class Chat extends React.Component {
     fetchChat = async (page = 1) => {
         this.setState({working: true});
 
-        const request = await ChatApi.get(null, {
+        const request = await ChatApi.get({
+            session: this.state.sessionId
+        }, {
             page,
             search: this.state.search
         });
@@ -49,7 +52,7 @@ export default class Chat extends React.Component {
                 <div className="divide-y divide-gray-200 lg:col-span-9">
                     <div className="p-6">
                         <h2 className="text-lg leading-6 font-medium text-gray-900">
-                            Main Stage - Create Session
+                            Main Stage - Chat
                         </h2>
                     </div>
 
@@ -71,6 +74,6 @@ export default class Chat extends React.Component {
             <div>
 
             </div>
-        )
+        );
     };
 }

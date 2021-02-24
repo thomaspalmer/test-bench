@@ -36,34 +36,33 @@ class SessionController extends Controller
     }
 
     /**
-     * @param $id
+     * @param MainStageSession $session
      * @return SessionResource
      */
-    public function show($id)
+    public function show(MainStageSession $session)
     {
-        $mainStageSession = MainStageSession::findOrFail($id);
-
-        return new SessionResource($mainStageSession);
-    }
-
-    public function update(UpdateSessionRequest $request, $id)
-    {
-        $mainStageSession = MainStageSession::findOrFail($id);
-
-        $mainStageSession->update($request->validated());
-
-        return new SessionResource($mainStageSession);
+        return new SessionResource($session);
     }
 
     /**
-     * @param $id
+     * @param MainStageSession $session
+     * @param UpdateSessionRequest $request
+     * @return SessionResource
+     */
+    public function update(MainStageSession $session, UpdateSessionRequest $request)
+    {
+        $session->update($request->validated());
+
+        return new SessionResource($session);
+    }
+
+    /**
+     * @param MainStageSession $session
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(MainStageSession $session)
     {
-        $mainStageSession = MainStageSession::findOrFail($id);
-
-        $mainStageSession->delete();
+        $session->delete();
 
         return response('', 204);
     }

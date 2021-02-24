@@ -8,11 +8,12 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "dualitystudio/admin": "dev-master",
         "dualitystudio/agenda": "dev-master",
         "dualitystudio/auth": "dev-master",
         "dualitystudio/base": "dev-master",
+        "dualitystudio/reactions": "dev-master",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

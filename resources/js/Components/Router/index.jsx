@@ -47,7 +47,7 @@ export default class Router extends React.Component {
                 exact={routeProps.exact === undefined || routeProps.exact}
                 key={this.key++}
                 render={(props) => (
-                    routeProps.guards ? this.renderRouteThroughGuard(props, routeProps) : <route_props.component {...props} />
+                    routeProps.guards ? this.renderRouteThroughGuard(props, routeProps) : <routeProps.component {...props} />
                 )}
             />
         );

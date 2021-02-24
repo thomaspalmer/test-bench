@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6743b5d194e1b855784394b2398a611",
+    "content-hash": "d37fbe891389caa0c6dee353ea3ce06e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -756,6 +756,45 @@
             ],
             "description": "Base setup with React.JS and tailwindcss",
             "homepage": "https://github.com/dualitystudio/base",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "dualitystudio/reactions",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/reactions",
+                "reference": "564f4069e5732be4009f01f481b719417e5786d5"
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DualityStudio\\Reactions\\ReactionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DualityStudio\\Reactions\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Palmer",
+                    "email": "thomas@dualitystudio.co.uk"
+                }
+            ],
+            "description": "Reactions with React.JS and tailwindcss",
+            "homepage": "https://github.com/dualitystudio/reactions",
             "transport-options": {
                 "relative": true
             }
@@ -8825,7 +8864,8 @@
         "dualitystudio/admin": 20,
         "dualitystudio/agenda": 20,
         "dualitystudio/auth": 20,
-        "dualitystudio/base": 20
+        "dualitystudio/base": 20,
+        "dualitystudio/reactions": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

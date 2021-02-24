@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMainStageCommentsTable extends Migration
+class CreateMainStageChatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMainStageCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('main_stage_comments', function (Blueprint $table) {
+        Schema::create('main_stage_chats', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id')->index();
             $table->uuid('session_id')->index();
@@ -32,6 +32,6 @@ class CreateMainStageCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('main_stage_comments');
+        Schema::dropIfExists('main_stage_chats');
     }
 }

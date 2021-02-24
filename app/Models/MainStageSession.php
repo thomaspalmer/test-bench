@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\SessionsUpdated;
 use Carbon\Carbon;
 use DualityStudio\Base\Traits\Filterable;
 use DualityStudio\Base\Traits\UsesUuid;
@@ -34,6 +35,15 @@ class MainStageSession extends Model
     /**
      * @var string[]
      */
+    protected $dispatchesEvents = [
+        'created' => SessionsUpdated::class,
+        'updated' => SessionsUpdated::class,
+        'deleted' => SessionsUpdated::class
+    ];
+
+    /**
+     * @var string[]
+     */
     protected $appends = [
         'live'
     ];
@@ -46,14 +56,22 @@ class MainStageSession extends Model
         $startDate = Carbon::parse($this->starts_at);
         $endDate = $this->ends_at !== null ? Carbon::parse($this->ends_at) : Carbon::now()->addMinute();
 
-        return Carbon::now()->between($startDate,$endDate);
+        return Carbon::now()->between($startDate, $endDate);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments()
+    public function chats()
     {
-        return $this->hasMany(MainStageComment::class, 'session_id');
+        return $this->hasMany(MainStageChat::class, 'session_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reactions()
+    {
+        return $this->hasMany(MainStageReaction::class, 'session_id');
     }
 }

@@ -174,6 +174,12 @@ export default class MainStage extends React.Component {
                                                                 </Link>
                                                             )}
 
+                                                            {session.reactions && (
+                                                                <Link to={`/admin/main-stage/reactions/${session.id}`}>
+                                                                    <SecondaryButton text="Reactions" className="mr-2" />
+                                                                </Link>
+                                                            )}
+
                                                             <ModalTrigger
                                                                 component={Delete}
                                                                 props={{
