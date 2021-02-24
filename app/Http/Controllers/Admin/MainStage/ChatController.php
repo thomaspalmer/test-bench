@@ -36,8 +36,6 @@ class ChatController extends Controller
             return abort(404);
         }
 
-        $this->authorize('delete', $chat);
-
         $chat->delete();
 
         return response('', 204);

@@ -74,4 +74,12 @@ class MainStageSession extends Model
     {
         return $this->hasMany(MainStageReaction::class, 'session_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function polls()
+    {
+        return $this->hasMany(MainStagePoll::class, 'session_id');
+    }
 }
