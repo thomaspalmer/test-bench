@@ -71,8 +71,6 @@ class PollController extends Controller
             $ids[] = $a->id;
         }
 
-        dd($ids);
-
         $poll->answers()->whereNotIn('id', $ids)->delete();
 
         return new PollResource($poll);
