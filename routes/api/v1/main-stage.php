@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MainStage\ReactionController as AdminReactionCont
 use App\Http\Controllers\MainStage\ReactionController;
 use App\Http\Controllers\MainStage\SessionController;
 use App\Http\Controllers\MainStage\ChatController;
+use App\Http\Controllers\MainStage\PollSubmissionController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'admin'])
@@ -37,4 +38,7 @@ Route::middleware('auth:sanctum')
             ->only(['store']);
         Route::resource('sessions.chats', ChatController::class)
             ->only(['index', 'store']);
+
+        Route::resource('sessions.poll-submissions', PollSubmissionController::class)
+            ->only('index');
     });
