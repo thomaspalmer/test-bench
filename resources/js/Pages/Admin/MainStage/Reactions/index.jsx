@@ -27,7 +27,7 @@ export default class Reactions extends React.Component {
         this.fetchReactions();
 
         Socket.getConnection()
-            .private(`reactions.${this.state.sessionId}`)
+            .private(`main_stage_reactions.${this.state.sessionId}`)
             .listen('Reaction', (e) => {
                 this.setState({
                     reactions: [

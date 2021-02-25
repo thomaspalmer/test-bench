@@ -25,7 +25,7 @@ class MainStageChat extends Model
      */
     protected $dispatchesEvents = [
         'created' => ChatEvent::class,
-        'deleted' => ChatDeletedEvent::class
+        'deleting' => ChatDeletedEvent::class
     ];
 
     /**

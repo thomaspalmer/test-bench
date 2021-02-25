@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\MainStage;
 
+use App\Events\MainStagePollsUpdated;
 use App\Filters\Admin\MainStage\PollFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MainStage\CreatePollRequest;
@@ -72,6 +73,8 @@ class PollController extends Controller
         }
 
         $poll->answers()->whereNotIn('id', $ids)->delete();
+
+        event(new MainStagePollsUpdated($poll));
 
         return new PollResource($poll);
     }

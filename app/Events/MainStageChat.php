@@ -36,6 +36,6 @@ class MainStageChat implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat.' . $this->message->session_id);
+        return new PrivateChannel('main_stage_chat.' . $this->message->session_id);
     }
 }

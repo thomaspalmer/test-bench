@@ -63,7 +63,7 @@ export default class Reactions extends React.Component {
      */
     connectToBroadcasts = () => {
         Socket.getConnection()
-            .private(`reactions.${this.props.sessionId}`)
+            .private(`main_stage_reactions.${this.props.sessionId}`)
             .listen('MainStageReaction', (e) => {
                 if (e.reaction.user_id !== User.id) {
                     this.handleAddReaction(e.reaction);

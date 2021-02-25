@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Events\PollsUpdated;
+use App\Events\MainStagePollsUpdated;
 use DualityStudio\Base\Traits\Filterable;
 use DualityStudio\Base\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,10 +30,24 @@ class MainStagePoll extends Model
      * @var string[]
      */
     protected $dispatchesEvents = [
-        'created' => PollsUpdated::class,
-        'updated' => PollsUpdated::class,
-        'deleted' => PollsUpdated::class
+        'created' => MainStagePollsUpdated::class,
+        'deleted' => MainStagePollsUpdated::class
     ];
+
+    /**
+     * @var string[]
+     */
+    protected $appends = [
+        'submission_count'
+    ];
+
+    /**
+     * @return int
+     */
+    public function getSubmissionCountAttribute()
+    {
+        return $this->submissions()->count();
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -49,5 +63,13 @@ class MainStagePoll extends Model
     public function answers()
     {
         return $this->hasMany(MainStagePollAnswer::class, 'question_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function submissions()
+    {
+        return $this->hasMany(MainStagePollSubmission::class, 'poll_id');
     }
 }

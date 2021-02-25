@@ -27,9 +27,9 @@ export default class MainStage extends React.Component {
         this.fetchSessions();
 
         Socket.getConnection()
-            .private(`sessions`)
-            .listen('SessionsUpdated', (e) => this.fetchSessions(false))
-            .listen('PollsUpdated', (e) => this.fetchSessions(false));
+            .private(`main_stage_sessions`)
+            .listen('MainStageSessionsUpdated', (e) => this.fetchSessions(false))
+            .listen('MainStagePollsUpdated', (e) => this.fetchSessions(false));
 
         this.interval = setInterval(this.updateSessions, 2000); // 2 seconds
     };
@@ -53,22 +53,24 @@ export default class MainStage extends React.Component {
 
             return now > startsAt && (endsAt === null || now < endsAt);
         });
+        if (
+            currentSession
+        ) {
+            const state = this.state;
 
-        if (currentSession && currentSession.id !== this.state.currentSession?.id) {
+            if ((currentSession.id !== this.state.currentSession?.id || currentSession.updated_at !== this.state.currentSession.updated_at)) {
+                state.currentSession = currentSession;
+            }
+
             // Current Poll
-            let currentPoll = null;
-
             if (currentSession.polls.length > 0) {
                 // Display the last poll available
                 let polls = currentSession.polls.filter(poll => now > DateTime.fromISO(poll.display_from));
 
-                currentPoll = polls[polls.length - 1];
+                state.currentPoll = polls[polls.length - 1];
             }
 
-            this.setState({
-                currentSession,
-                currentPoll
-            });
+            this.setState(state);
         } else if (!currentSession && this.state.currentSession) {
             this.setState({
                 currentSession: null,

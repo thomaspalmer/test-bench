@@ -32,7 +32,7 @@ export default class Chat extends React.Component {
         this.fetchMessages();
 
         Socket.getConnection()
-            .private(`chat.${this.state.sessionId}`)
+            .private(`main_stage_chat.${this.state.sessionId}`)
             .listen('MainStageChat', (e) => {
                 if (e.message.user_id !== User.id) {
                     this.handleAddMessage(e.message);

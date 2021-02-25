@@ -130,7 +130,7 @@ export default class Polls extends React.Component {
                                                             <PrimaryButton text="Edit" className="mr-2" />
                                                         </Link>
 
-                                                        <Link to={`/admin/main-stage/polls/${poll.id}`}>
+                                                        <Link to={`/admin/main-stage/polls/${poll.session_id}/results/${poll.id}`}>
                                                             <SecondaryButton text="Results" className="mr-2" />
                                                         </Link>
 

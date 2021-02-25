@@ -38,16 +38,14 @@ class Chat extends React.Component {
         this.containerRef.addEventListener('scroll', this.handleLoadMore);
 
         Socket.getConnection()
-            .private(`chat.${this.props.sessionId}`)
+            .private(`main_stage_chat.${this.props.sessionId}`)
             .listen('MainStageChat', (e) => {
                 if (e.message.user_id !== User.id) {
                     this.handleAddMessage(e.message);
                 }
             })
             .listen('MainStageChatDeleted', (e) => {
-                if (e.message.user_id !== User.id) {
-                    this.handleDeleteMessage(e.message);
-                }
+                this.handleDeleteMessage(e.message);
             })
             .listen('subscription_error', console.error);
     };

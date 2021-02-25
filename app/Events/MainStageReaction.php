@@ -37,6 +37,6 @@ class MainStageReaction implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('reactions.' . $this->reaction->session_id);
+        return new PrivateChannel('main_stage_reactions.' . $this->reaction->session_id);
     }
 }

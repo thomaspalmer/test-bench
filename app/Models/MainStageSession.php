@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Events\SessionsUpdated;
+use App\Events\MainStageSessionsUpdated;
 use Carbon\Carbon;
 use DualityStudio\Base\Traits\Filterable;
 use DualityStudio\Base\Traits\UsesUuid;
@@ -36,9 +36,9 @@ class MainStageSession extends Model
      * @var string[]
      */
     protected $dispatchesEvents = [
-        'created' => SessionsUpdated::class,
-        'updated' => SessionsUpdated::class,
-        'deleted' => SessionsUpdated::class
+        'created' => MainStageSessionsUpdated::class,
+        'updated' => MainStageSessionsUpdated::class,
+        'deleted' => MainStageSessionsUpdated::class
     ];
 
     /**

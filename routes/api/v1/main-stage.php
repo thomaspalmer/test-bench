@@ -17,8 +17,8 @@ Route::middleware(['auth:sanctum', 'admin'])
         Route::prefix('main-stage')->group(function () {
             Route::resource('sessions', AdminSessionController::class);
 
-            Route::resource('sessions.chat', AdminChatController::class)
-                ->only(['index', 'update', 'destroy']);
+            Route::resource('sessions.chats', AdminChatController::class)
+                ->only(['index', 'destroy']);
 
             Route::resource('sessions.reactions', AdminReactionController::class)
                 ->only(['index']);

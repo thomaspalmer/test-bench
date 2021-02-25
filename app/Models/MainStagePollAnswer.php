@@ -18,10 +18,33 @@ class MainStagePollAnswer extends Model
     ];
 
     /**
+     * @var string[]
+     */
+    protected $appends = [
+        'submission_count'
+    ];
+
+    /**
+     * @return int
+     */
+    public function getSubmissionCountAttribute()
+    {
+        return $this->submissions()->count();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function poll()
     {
         return $this->belongsTo(MainStagePoll::class, 'question_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function submissions()
+    {
+        return $this->hasMany(MainStagePollSubmission::class, 'answer_id');
     }
 }
