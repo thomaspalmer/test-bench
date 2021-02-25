@@ -13,6 +13,22 @@ class PollSubmissionController extends Controller
 {
     /**
      * @param MainStageSession $session
+     * @param Request $request
+     * @return PollSubmissionResource
+     */
+    public function index(MainStageSession $session, Request $request)
+    {
+        return new PollSubmissionResource(
+            MainStagePollSubmission::
+                where([
+                    ['poll_id', $request->get('poll_id')],
+                    ['user_id', $request->user()->id]
+                ])->firstOrFail()
+        );
+    }
+
+    /**
+     * @param MainStageSession $session
      * @param CreatePollSubmissionRequest $request
      * @return PollSubmissionResource
      */

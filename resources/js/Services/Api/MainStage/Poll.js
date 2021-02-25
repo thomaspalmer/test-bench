@@ -1,7 +1,7 @@
 import ApiBase from '../ApiBase';
 
 class Poll extends ApiBase {
-    route = 'admin/main-stage/sessions/:session/polls';
+    route = '/main-stage/sessions/:session/poll-submissions';
 }
 
 export default new Poll;

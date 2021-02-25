@@ -18,7 +18,7 @@ class SessionController extends Controller
     {
         return SessionResource::collection(
             MainStageSession::filter($filter)
-                ->with('polls')
+                ->with('polls.answers')
                 ->get()
         );
     }

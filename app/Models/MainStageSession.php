@@ -80,6 +80,15 @@ class MainStageSession extends Model
      */
     public function polls()
     {
-        return $this->hasMany(MainStagePoll::class, 'session_id');
+        return $this->hasMany(MainStagePoll::class, 'session_id')
+            ->orderBy('display_from', 'asc');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pollSubmission()
+    {
+        return $this->hasMany(MainStagePollSubmission::class, 'session_id');
     }
 }

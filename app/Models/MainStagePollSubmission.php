@@ -14,7 +14,7 @@ class MainStagePollSubmission extends Model
      * @var string[]
      */
     protected $fillable = [
-        'user_id', 'answer_id'
+        'user_id', 'answer_id', 'poll_id'
     ];
 
     /**

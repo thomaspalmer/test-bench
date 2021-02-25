@@ -11,7 +11,7 @@ import {PrimaryButton, SecondaryButton} from 'Components/Button';
 import {DangerButton} from 'Components/Button';
 import {Alert, Loading} from 'Components/Partials';
 
-import Poll from 'Services/Api/MainStage/Poll';
+import Poll from 'Services/Api/Admin/MainStage/Polls';
 import {Toast} from 'Services';
 
 class Store extends React.Component {

@@ -3,7 +3,7 @@ import {DateTime} from 'luxon';
 
 import Authenticated from 'Components/Layouts/Authenticated';
 import {Loading} from 'Components/Partials';
-import {Stream, Chat, Reactions} from 'Components/MainStage';
+import {Stream, Poll, Chat, Reactions} from 'Components/MainStage';
 
 import Sessions from 'Services/Api/MainStage/Sessions';
 import {Toast, Socket} from 'Services';
@@ -56,13 +56,23 @@ export default class MainStage extends React.Component {
 
         if (currentSession && currentSession.id !== this.state.currentSession?.id) {
             // Current Poll
+            let currentPoll = null;
+
+            if (currentSession.polls.length > 0) {
+                // Display the last poll available
+                let polls = currentSession.polls.filter(poll => now > DateTime.fromISO(poll.display_from));
+
+                currentPoll = polls[polls.length - 1];
+            }
 
             this.setState({
-                currentSession
+                currentSession,
+                currentPoll
             });
         } else if (!currentSession && this.state.currentSession) {
             this.setState({
-                currentSession: null
+                currentSession: null,
+                currentPoll: null
             });
         }
     };
@@ -95,12 +105,12 @@ export default class MainStage extends React.Component {
      * @method render
      * @return {JSX.Element}
      */
-    render () {
-        const {working, currentSession} = this.state;
+    render() {
+        const {working, currentSession, currentPoll} = this.state;
 
         return (
             <Authenticated pageTitle="Dashboard">
-                {working && (<Loading />)}
+                {working && (<Loading/>)}
 
                 {!working && (
                     <React.Fragment>
@@ -111,28 +121,40 @@ export default class MainStage extends React.Component {
                         )}
 
                         {currentSession && (
-                            <div className="grid md:grid-cols-3 gap-8">
-                                <div className={`${currentSession?.chat ? 'col-span-2' : 'col-span-3'}`}>
-                                    {currentSession?.reactions === true && (
-                                        <Reactions
-                                            side="right"
-                                            ref={ref => this.reactions = ref}
-                                            sessionId={currentSession.id}
-                                        >
-                                            <Stream src={currentSession.stream_src} />
-                                        </Reactions>
-                                    )}
+                            <div>
+                                <div className="grid md:grid-cols-3 gap-8">
+                                    <div className={`${currentSession?.chat ? 'col-span-2' : 'col-span-3'}`}>
+                                        {currentSession?.reactions === true && (
+                                            <Reactions
+                                                side="right"
+                                                ref={ref => this.reactions = ref}
+                                                sessionId={currentSession.id}
+                                            >
+                                                <Stream src={currentSession.stream_src}/>
+                                            </Reactions>
+                                        )}
 
-                                    {currentSession?.reactions === false && (
-                                        <Stream src={currentSession.stream_src} />
+                                        {currentSession?.reactions === false && (
+                                            <Stream src={currentSession.stream_src}/>
+                                        )}
+                                    </div>
+
+                                    {currentSession?.chat && (
+                                        <div>
+                                            <Chat
+                                                sessionId={currentSession.id}
+                                            />
+                                        </div>
                                     )}
                                 </div>
-
-                                {currentSession?.chat && (
-                                    <div>
-                                        <Chat
-                                            sessionId={currentSession.id}
-                                        />
+                                {currentPoll && (
+                                    <div className="w-full mt-4">
+                                        <div className="w-1/2 mx-auto">
+                                            <Poll
+                                                poll={currentPoll}
+                                                sessionId={currentSession.id}
+                                            />
+                                        </div>
                                     </div>
                                 )}
                             </div>

@@ -40,5 +40,5 @@ Route::middleware('auth:sanctum')
             ->only(['index', 'store']);
 
         Route::resource('sessions.poll-submissions', PollSubmissionController::class)
-            ->only('index');
+            ->only(['index', 'store']);
     });
