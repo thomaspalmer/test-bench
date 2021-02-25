@@ -36,6 +36,7 @@ class CreateSessionRequest extends FormRequest
             'stream_src' => 'required|string|max:255',
             'chat' => 'nullable|boolean',
             'reactions' => 'nullable|boolean',
+            'remote_control' => 'nullable|boolean',
         ];
     }
 }

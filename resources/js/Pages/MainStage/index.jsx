@@ -3,7 +3,7 @@ import {DateTime} from 'luxon';
 
 import Authenticated from 'Components/Layouts/Authenticated';
 import {Loading} from 'Components/Partials';
-import {Stream, Poll, Chat, Reactions} from 'Components/MainStage';
+import {Stream, Poll, RemoteControl, Chat, Reactions} from 'Components/MainStage';
 
 import Sessions from 'Services/Api/MainStage/Sessions';
 import {Toast, Socket} from 'Services';
@@ -53,6 +53,7 @@ export default class MainStage extends React.Component {
 
             return now > startsAt && (endsAt === null || now < endsAt);
         });
+
         if (
             currentSession
         ) {
@@ -149,6 +150,15 @@ export default class MainStage extends React.Component {
                                         </div>
                                     )}
                                 </div>
+
+                                {currentSession?.remote_control && (
+                                    <div className="w-full text-center">
+                                        <RemoteControl
+                                            sessionId={currentSession.id}
+                                        />
+                                    </div>
+                                )}
+
                                 {currentPoll && (
                                     <div className="w-full mt-4">
                                         <div className="w-1/2 mx-auto">

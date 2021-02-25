@@ -17,7 +17,7 @@ class MainStageSession extends Model
      * @var string[]
      */
     protected $fillable = [
-        'id', 'title', 'starts_at', 'ends_at', 'stream_src', 'description', 'chat', 'reactions'
+        'id', 'title', 'starts_at', 'ends_at', 'stream_src', 'description', 'chat', 'reactions', 'remote_control'
     ];
 
     /**
@@ -28,6 +28,7 @@ class MainStageSession extends Model
         'ends_at' => 'datetime',
         'chat' => 'boolean',
         'reactions' => 'boolean',
+        'remote_control' => 'boolean',
         'starts_soon' => 'boolean',
         'live' => 'boolean'
     ];
