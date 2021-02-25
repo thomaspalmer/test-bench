@@ -60,11 +60,12 @@ class Store extends React.Component {
         });
 
         if (request.success) {
-            const s = request.data.data;
+            const poll = request.data.data;
 
             this.props.setInitialValues({
-                ...request.data.data,
-                answers: s.answers.map(a => a.answer)
+                ...poll,
+                answers: poll.answers.map(a => a.answer),
+                display_from: poll.display_from !== null ? new Date(poll.display_from) : null
             });
 
             return this.setState({

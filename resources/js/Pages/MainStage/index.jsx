@@ -16,7 +16,8 @@ export default class MainStage extends React.Component {
     state = {
         working: false,
         sessions: null,
-        currentSession: null
+        currentSession: null,
+        currentPoll: null
     };
 
     /**
@@ -27,7 +28,8 @@ export default class MainStage extends React.Component {
 
         Socket.getConnection()
             .private(`sessions`)
-            .listen('SessionsUpdated', (e) => this.fetchSessions(false));
+            .listen('SessionsUpdated', (e) => this.fetchSessions(false))
+            .listen('PollsUpdated', (e) => this.fetchSessions(false));
 
         this.interval = setInterval(this.updateSessions, 2000); // 2 seconds
     };
@@ -47,19 +49,21 @@ export default class MainStage extends React.Component {
 
         const currentSession = this.state.sessions.find(session => {
             const startsAt = DateTime.fromISO(session.starts_at);
-            const endsAt = DateTime.fromISO(session.ends_at);
+            const endsAt = session.ends_at !== null ? DateTime.fromISO(session.ends_at) : null;
 
             return now > startsAt && (endsAt === null || now < endsAt);
         });
 
         if (currentSession && currentSession.id !== this.state.currentSession?.id) {
+            // Current Poll
+
             this.setState({
                 currentSession
             });
         } else if (!currentSession && this.state.currentSession) {
             this.setState({
                 currentSession: null
-            })
+            });
         }
     };
 
@@ -78,16 +82,10 @@ export default class MainStage extends React.Component {
         });
 
         if (request.success) {
-            const sessions = request.data;
-            const currentSession = sessions.find(s => s.live);
-
-            // TODO Get the next session
-
             return this.setState({
-                sessions,
-                currentSession,
+                sessions: request.data.data,
                 working: false
-            });
+            }, this.updateSessions);
         }
 
         Toast.error();

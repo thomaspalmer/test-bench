@@ -6,7 +6,7 @@ use App\Filters\Admin\MainStage\SessionFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MainStage\CreateSessionRequest;
 use App\Http\Requests\Admin\MainStage\UpdateSessionRequest;
-use App\Http\Resources\Admin\MainStage\SessionResource;
+use App\Http\Resources\MainStage\SessionResource;
 use App\Models\MainStageSession;
 use Illuminate\Http\Request;
 

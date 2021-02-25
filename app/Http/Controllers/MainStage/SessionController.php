@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MainStage;
 
 use App\Filters\MainStage\SessionFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\MainStage\SessionResource;
 use App\Models\MainStageSession;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,10 @@ class SessionController extends Controller
      */
     public function index(SessionFilter $filter)
     {
-        return MainStageSession::filter($filter)
-            ->get();
+        return SessionResource::collection(
+            MainStageSession::filter($filter)
+                ->with('polls')
+                ->get()
+        );
     }
 }

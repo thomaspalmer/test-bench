@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Events\SessionsUpdated;
+use App\Events\PollsUpdated;
 use DualityStudio\Base\Traits\Filterable;
 use DualityStudio\Base\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,9 +30,9 @@ class MainStagePoll extends Model
      * @var string[]
      */
     protected $dispatchesEvents = [
-        'created' => SessionsUpdated::class,
-        'updated' => SessionsUpdated::class,
-        'deleted' => SessionsUpdated::class
+        'created' => PollsUpdated::class,
+        'updated' => PollsUpdated::class,
+        'deleted' => PollsUpdated::class
     ];
 
     /**
