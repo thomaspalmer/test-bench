@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\VerifyEmail;
+use DualityStudio\Auth\Traits\HasOtp;
 use DualityStudio\Auth\Traits\HasTeams;
 use DualityStudio\Auth\Traits\HasTwoFactor;
 use DualityStudio\Base\Traits\UsesUuid;
@@ -15,7 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, UsesUuid, Filterable, HasApiTokens, HasTeams, HasTwoFactor;
+    use HasFactory, Notifiable, UsesUuid, Filterable, HasApiTokens, HasTeams, HasTwoFactor, HasOtp;
 
     /**
      * The attributes that are mass assignable.

@@ -30,5 +30,9 @@ return [
         'team.manage-settings',
         'team.manage-users',
         'team.manage-groups'
+    ],
+
+    'otp' => [
+        'expires' => 30 // In seconds
     ]
 ];

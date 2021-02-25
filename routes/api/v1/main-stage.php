@@ -43,6 +43,6 @@ Route::middleware('auth:sanctum')
         Route::resource('sessions.poll-submissions', PollSubmissionController::class)
             ->only(['index', 'store']);
 
-        Route::resource('session.remote-connections', RemoteConnectionController::class)
+        Route::resource('sessions.remote-connections', RemoteConnectionController::class)
             ->only(['index']);
     });

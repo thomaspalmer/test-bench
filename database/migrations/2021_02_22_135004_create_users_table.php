@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('two_factor_verified_at')->nullable();
             $table->boolean('enabled')->default(true);
             $table->text('avatar_path')->nullable();
+            $table->string('otp_code')->nullable();
+            $table->timestamp('otp_code_updated_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -10,6 +10,9 @@ export default class RemoteControl extends React.Component {
         return (
             <ModalTrigger
                 component={RemoteControlConnect}
+                props={{
+                    sessionId: this.props.sessionId
+                }}
             >
                 <PrimaryButton
                     text="Launch Remote Control"
