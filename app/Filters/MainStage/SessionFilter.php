@@ -18,4 +18,13 @@ class SessionFilter extends QueryFilter
             [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]
         );
     }
+
+    /**
+     * @param $term
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function remoteControl($term)
+    {
+        return $this->builder->where('remote_control', $term);
+    }
 }

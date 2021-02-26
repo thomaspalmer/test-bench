@@ -1,7 +1,7 @@
 import React from 'react';
 import {DateTime} from 'luxon';
 
-import {Poll, Chat, Reactions} from 'Components/MainStage';
+import {Poll, Chat, ReactionTriggers} from 'Components/MainStage';
 
 import Sessions from 'Services/Api/MainStage/Sessions';
 import {Toast, Socket} from 'Services';
@@ -16,7 +16,7 @@ export default class Remote extends React.Component {
         sessions: null,
         currentSession: null,
         currentPoll: null,
-        tab: null
+        tab: null,
     };
 
     /**
@@ -90,7 +90,8 @@ export default class Remote extends React.Component {
         }
 
         const request = await Sessions.get(null, {
-            starts_today: 1
+            starts_today: 1,
+            remote_control: 1
         });
 
         if (request.success) {
@@ -160,6 +161,10 @@ export default class Remote extends React.Component {
         );
     };
 
+    /**
+     * @method renderChats
+     * @return {JSX.Element}
+     */
     renderChat = () => {
         const {currentSession} = this.state;
 
@@ -172,8 +177,20 @@ export default class Remote extends React.Component {
         );
     };
 
+    /**
+     * @method renderReactions
+     * @return {JSX.Element}
+     */
     renderReactions = () => {
+        const {currentSession} = this.state;
 
+        return (
+            <div className="h-full w-full px-8 flex justify-between items-center">
+                <ReactionTriggers
+                    sessionId={currentSession?.id}
+                />
+            </div>
+        );
     };
 
     /**
@@ -217,6 +234,6 @@ export default class Remote extends React.Component {
             >
                 {text}
             </button>
-        )
-    }
+        );
+    };
 }

@@ -6,6 +6,10 @@ import {ModalTrigger} from 'Components/Modal';
 import RemoteControlConnect from './Modals/RemoteControlConnect';
 
 export default class RemoteControl extends React.Component {
+    /**
+     * @method render
+     * @return {JSX.Element}
+     */
     render () {
         return (
             <ModalTrigger
