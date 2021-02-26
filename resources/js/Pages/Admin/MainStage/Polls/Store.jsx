@@ -1,12 +1,11 @@
 import React from 'react';
-import DatePicker from 'react-datepicker';
 import {Link} from 'react-router-dom';
 
 import AdminLayout from 'Pages/Admin/AdminLayout';
 
 import Delete from 'Components/Partials/Modals/Delete';
 import {ModalTrigger} from 'Components/Modal';
-import {FormHandler, Label, Input} from 'Components/Form';
+import {FormHandler, Label, DatePicker, Input} from 'Components/Form';
 import {PrimaryButton, SecondaryButton} from 'Components/Button';
 import {DangerButton} from 'Components/Button';
 import {Alert, Loading} from 'Components/Partials';
@@ -180,7 +179,7 @@ class Store extends React.Component {
                                     <div className="relative flex items-stretch flex-grow focus-within:z-10">
                                         <DatePicker
                                             disabled={now}
-                                            className={`w-full border border-gray-300 rounded-l-md shadow-sm ${now ? 'opacity-50' : ''}`}
+                                            className={now ? 'opacity-50' : ''}
                                             selected={form.display_from}
                                             onChange={date => handleInput('display_from', date)}
                                             showTimeSelect

@@ -7,7 +7,17 @@ import Radio from './Radio';
 import Select from './Select';
 import Textarea from './Textarea';
 import Toggle from './Toggle';
+import DatePicker from './DatePicker';
 
 export {
-    Checkbox, FileUpload, Input, Select, Textarea, Toggle, Label, FormHandler, Radio
+    Checkbox,
+    FileUpload,
+    Input,
+    Select,
+    Textarea,
+    Toggle,
+    Label,
+    FormHandler,
+    Radio,
+    DatePicker
 }

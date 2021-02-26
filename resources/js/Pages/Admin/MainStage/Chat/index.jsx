@@ -11,7 +11,7 @@ import Delete from 'Components/Partials/Modals/Delete';
 
 import ChatApi from 'Services/Api/Admin/MainStage/Chat';
 import {Socket, Toast, User} from 'Services';
-import {getAvatarUrl} from 'Services/Helpers';
+import {getAvatarUrl} from 'Services/AuthHelpers';
 
 export default class Chat extends React.Component {
     /**

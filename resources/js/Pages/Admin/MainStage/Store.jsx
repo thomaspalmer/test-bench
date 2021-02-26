@@ -1,11 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import DatePicker from 'react-datepicker';
 import CKEditor from 'ckeditor4-react';
 import {DateTime} from 'luxon';
 
 import AdminLayout from 'Pages/Admin/AdminLayout';
-import {Input, Toggle, Label, FormHandler} from 'Components/Form';
+import {Input, DatePicker, Toggle, Label, FormHandler} from 'Components/Form';
 import {Loading, Alert} from 'Components/Partials';
 import {PrimaryButton, SecondaryButton} from 'Components/Button';
 
@@ -139,8 +138,8 @@ class Store extends React.Component {
                                     <div className="mt-1 flex rounded-md shadow-sm">
                                         <div className="relative flex items-stretch flex-grow focus-within:z-10">
                                             <DatePicker
+                                                className={now ? 'opacity-50' : ''}
                                                 disabled={now}
-                                                className={`w-full border border-gray-300 rounded-l-md shadow-sm ${now ? 'opacity-50' : ''}`}
                                                 selected={form.starts_at}
                                                 onChange={date => handleInput('starts_at', date)}
                                                 showTimeSelect
@@ -160,9 +159,8 @@ class Store extends React.Component {
                                 </div>
 
                                 <div>
-                                    <Label label="Ends At"/>
                                     <DatePicker
-                                        className="w-full border border-gray-300 rounded-md shadow-sm"
+                                        label="Ends At"
                                         selected={form.ends_at}
                                         onChange={date => handleInput('ends_at', date)}
                                         showTimeSelect
