@@ -3,6 +3,7 @@ import React from 'react';
 /**
  * @function Card
  * @param {JSX.Element} children
+ * @param {string} className
  * @return {JSX.Element}
  * @constructor
  */

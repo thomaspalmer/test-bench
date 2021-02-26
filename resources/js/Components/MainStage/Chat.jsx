@@ -143,8 +143,8 @@ class Chat extends React.Component {
 
         return (
             <Card className="h-full">
-                <CardBody>
-                    <div className="overflow-y-scroll max-h-96 overflow-y-auto" ref={ref => this.containerRef = ref}>
+                <CardBody className="h-full flex flex-grow flex-col">
+                    <div className="overflow-y-scroll max-h-96 overflow-y-auto h-full" ref={ref => this.containerRef = ref}>
                         {messages && messages.map(this.renderMessage)}
 
                         {working && (
