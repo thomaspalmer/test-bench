@@ -2,7 +2,7 @@ import {EventEmitter} from 'events';
 
 import Me from './Api/Me/Me';
 
-import {getAvatarUrl} from './Helpers';
+import {getAvatarUrl} from './AuthHelpers';
 
 class User extends EventEmitter {
     /**

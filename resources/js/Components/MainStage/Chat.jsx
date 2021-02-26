@@ -10,7 +10,7 @@ import {Card, CardBody} from 'Components/Card';
 import ChatApi from 'Services/Api/MainStage/Chat';
 
 import {Toast, User, Socket} from 'Services';
-import {getAvatarUrl} from 'Services/Helpers';
+import {getAvatarUrl} from 'Services/AuthHelpers';
 
 class Chat extends React.Component {
     /**
