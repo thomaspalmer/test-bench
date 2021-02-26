@@ -14,10 +14,13 @@ class RemoteConnectionController extends Controller
      */
     public function index(Request $request)
     {
-        $otp = $request->user()->getOtpCode();
+        $otp = $request->user()->generateOtpCode();
 
         return new RemoteConnectionResource([
-            'otp' => $otp
+            'otp' => $otp,
+            'url' => route('auth.sso-login', [
+                $otp['otp_code']
+            ]) . '?redirect=/main-stage/remote'
         ]);
     }
 }

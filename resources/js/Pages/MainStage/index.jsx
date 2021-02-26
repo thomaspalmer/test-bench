@@ -127,6 +127,8 @@ export default class MainStage extends React.Component {
                             <div>
                                 <div className="grid md:grid-cols-3 gap-8">
                                     <div className={`${currentSession?.chat ? 'col-span-2' : 'col-span-3'}`}>
+                                        <h1 className="mb-2 text-2xl font-bold">{currentSession.title}</h1>
+
                                         {currentSession?.reactions === true && (
                                             <Reactions
                                                 side="right"

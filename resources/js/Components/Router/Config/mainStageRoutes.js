@@ -1,4 +1,5 @@
 import MainStage from 'Pages/MainStage';
+import MainStageRemote from 'Pages/MainStage/RemoteControl';
 
 import AdminMainStage from 'Pages/Admin/MainStage';
 import AdminMainStageStore from 'Pages/Admin/MainStage/Store';
@@ -11,6 +12,7 @@ import AdminMainStagePollsResults from 'Pages/Admin/MainStage/Polls/Results';
 export default [
     // Frontend
     { path: '/main-stage', component: MainStage, guards: ['auth'] },
+    { path: '/main-stage/remote', component: MainStageRemote, guards: ['auth'] },
 
     // Admin
     { path: '/admin/main-stage', component: AdminMainStage, guards: ['admin'] },

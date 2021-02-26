@@ -1,4 +1,5 @@
 import React from 'react';
+import QRCode from 'qrcode';
 
 import {Modal, ModalHeader, ModalBody} from 'Components/Modal';
 import {Loading} from 'Components/Partials';
@@ -7,17 +8,41 @@ import RemoteConnections from 'Services/Api/MainStage/RemoteConnections';
 import {Toast} from 'Services';
 
 export default class RemoteControlConnect extends React.Component {
+    /**
+     * @var timerInterval
+     * @type {null}
+     */
     timerInterval = null;
+
+    /**
+     * @var canvasRef
+     * @type {HTMLCanvasElement}
+     */
+    canvasRef;
 
     state = {
         working: false,
         timeLeft: 30
     };
 
+    /**
+     * @method componentDidMount
+     */
     componentDidMount = () => {
         this.fetchCode();
     };
 
+    /**
+     * @method componentWillUnmount
+     */
+    componentWillUnmount = () => {
+        window.clearInterval(this.timerInterval);
+    };
+
+    /**
+     * @method fetchCode
+     * @return {Promise<void>}
+     */
     fetchCode = async () => {
         this.setState({working: true});
 
@@ -26,8 +51,17 @@ export default class RemoteControlConnect extends React.Component {
         });
 
         if (request.success) {
+            const data = request.data.data;
+
+            QRCode.toCanvas(this.canvasRef, data.url, (error) => {
+                if (error) {
+                    Toast.error();
+                    return false;
+                }
+            });
+
             return this.setState({
-                timeLeft: 30,
+                timeLeft: data.otp.expires,
                 svg: null,
                 working: false
             }, () => {
@@ -38,6 +72,9 @@ export default class RemoteControlConnect extends React.Component {
         Toast.error();
     };
 
+    /**
+     * @method timer
+     */
     timer = () => {
         this.setState({
             timeLeft: this.state.timeLeft - 1
@@ -48,9 +85,13 @@ export default class RemoteControlConnect extends React.Component {
                 this.fetchCode();
             }
         });
-    }
+    };
 
-    render () {
+    /**
+     * @method render
+     * @return {JSX.Element}
+     */
+    render() {
         const {timeLeft, working} = this.state;
 
         return (
@@ -59,25 +100,23 @@ export default class RemoteControlConnect extends React.Component {
                     Connect your Remote Control
                 </ModalHeader>
 
-                {working && (
-                    <ModalBody>
-                        <Loading />
-                    </ModalBody>
-                )}
+                <ModalBody>
+                    {working && (
+                        <Loading/>
+                    )}
 
-                {!working && (
-                    <ModalBody>
+                    <React.Fragment>
                         <div className="text-center">
                             <p className="mb-2">Scan the QR Code below to open this link.</p>
 
                             <p>This code will expire in {timeLeft}s</p>
                         </div>
+                    </React.Fragment>
 
-
-                    </ModalBody>
-                )}
+                    <canvas className="mx-auto" ref={ref => this.canvasRef = ref} />
+                </ModalBody>
             </Modal>
-        )
+        );
     }
 }
 

@@ -41,6 +41,7 @@
         "laravel-echo-server": "^1.6.2",
         "luxon": "^1.25.0",
         "postcss": "^8.1.8",
+        "qrcode": "^1.4.4",
         "react": "^16.13.1",
         "react-datepicker": "^3.5.0",
         "react-dom": "^16.13.1",
